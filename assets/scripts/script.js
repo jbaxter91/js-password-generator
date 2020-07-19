@@ -19,17 +19,12 @@ var passwordTextField = document.querySelector("#password");
 // --------- End HTML Elements -----------
 
 
-// --------- Public variables ------------
-var passwordLength;
-
-// --------- End Public variables --------
-
 // --------- Event Listeners -------------
   // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 // --------- End Event Listeners ---------
 
-// Write password to the #password input
+  // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
   passwordTextField.value = password;
@@ -37,6 +32,7 @@ function writePassword() {
 
 }
 
+// Returns random alphabetic character from BASE_GLYPHS
 function randomCharacter()
 {
   var randomSelection = BASE_GLYPHS[Math.floor( Math.random() * BASE_GLYPHS.length)]
@@ -44,6 +40,7 @@ function randomCharacter()
   return randomSelection;
 }
 
+// Returns random special character from SPECIAL_GLYPHS
 function randomSpecial()
 {
   var randomSelection = SPECIAL_GLYPHS[Math.floor( Math.random() * SPECIAL_GLYPHS.length)]
@@ -51,13 +48,17 @@ function randomSpecial()
   return randomSelection;
 }
 
+// Returns random number from 0-9
 function randomNumber()
 {
-  var randomSelection = Math.round( Math.random() * 9);
+  var randomSelection = Math.floor( Math.random() * 10);
   console.log(" Random Number: " + randomSelection)
   return randomSelection;
 }
 
+// Returns password that is generated based on user input
+// Input needed are: Password Length, Use Uppercase, Use Lowercase, Use Special characters, use numbers
+// If input is incorrect, it will not generate a password and instead return a default message.
 function generatePassword()
 {
     // Welcome the user and ask for how many characters they want the password to be
@@ -90,7 +91,7 @@ function generatePassword()
       return DEFAULT_MESSAGE;
     }
   } 
-  // ---- End Verify Password Length ---
+  // ---- End Verify Password Length ----
 
     // Ask if user wants to use lowercase
   var useLowerCase = confirm("Would you like your password to contain lowercase?");
@@ -109,19 +110,18 @@ function generatePassword()
     return DEFAULT_MESSAGE;
   }
 
-  // Start an array for the values selected
+    // Start an array for the values selected
   var characterOptions = [];
-  if(useLowerCase)  { characterOptions.push("lower"); } //Lower was selected
-  if(useUpperCase)  { characterOptions.push("upper"); } //Upper case was selected
-  if(useNumbers)    { characterOptions.push("number"); } //Number was selected
-  if(useSpecialChars){ characterOptions.push("special"); } //Special was selected
+  if(useLowerCase)  { characterOptions.push("lower"); } //Lower was selected, adding it to selection
+  if(useUpperCase)  { characterOptions.push("upper"); } //Upper case was selected, adding it to selection
+  if(useNumbers)    { characterOptions.push("number"); } //Number was selected, adding it to selection
+  if(useSpecialChars){ characterOptions.push("special"); } //Special was selected, adding it to selection
 
   var returnPassword = "";
   for(var i =0; i < passwordLength; i++)
   {
-    console.log(passwordLength);
+      //Generate password based on selection
     var randomSelection = Math.floor( Math.random() * characterOptions.length);
-    console.log("Selected " + characterOptions[randomSelection])
     switch(characterOptions[randomSelection])
     {
       case "lower":
@@ -139,11 +139,12 @@ function generatePassword()
     }
   }
 
-    console.log("Return Password: " + returnPassword);
-    return returnPassword;
-
-    //Generate password based on selection
-
     //Return good password
+  console.log("Return Password: " + returnPassword);
+  return returnPassword;
+
+    
+
+    
 }
 
