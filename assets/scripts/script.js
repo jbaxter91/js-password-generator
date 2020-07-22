@@ -5,7 +5,7 @@ const DEFAULT_MESSAGE = "Your Secure Password";
   // Array of usable characters for both upper and lower case
 const BASE_GLYPHS = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
   // Array of usable characters for 'special' characters
-const SPECIAL_GLYPHS = ["!","@","#","$","%","^","&","*",];
+const SPECIAL_GLYPHS = ["!","@","#","$","%","^","&","*"];
   // minimum password length
 const MIN_PASSWORD_LENGTH = 8;
   // maximum password length
@@ -112,10 +112,10 @@ function generatePassword()
 
     // Start an array for the values selected
   var characterOptions = [];
-  if(useLowerCase)  { characterOptions.push("lower"); } //Lower was selected, adding it to selection
-  if(useUpperCase)  { characterOptions.push("upper"); } //Upper case was selected, adding it to selection
-  if(useNumbers)    { characterOptions.push("number"); } //Number was selected, adding it to selection
-  if(useSpecialChars){ characterOptions.push("special"); } //Special was selected, adding it to selection
+  if(useLowerCase)    { characterOptions.push("lower");   } //Lower was selected, adding it to selection
+  if(useUpperCase)    { characterOptions.push("upper");   } //Upper case was selected, adding it to selection
+  if(useNumbers)      { characterOptions.push("number");  } //Number was selected, adding it to selection
+  if(useSpecialChars) { characterOptions.push("special"); } //Special was selected, adding it to selection
 
   var returnPassword = "";
   for(var i =0; i < passwordLength; i++)
@@ -143,8 +143,5 @@ function generatePassword()
   console.log("Return Password: " + returnPassword);
   return returnPassword;
 
-    
-
-    
 }
 
